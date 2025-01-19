@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 
+
+
+
 test('Validate that restful-booker page loads as expected', async ({ page }) => {
   // Go to URL
   await page.goto('https://automationintesting.online/');
@@ -56,6 +59,28 @@ test('Validate that contact us form cannot be submitted if phone number is left 
   //Validate that correct error messages are displayed as expected.
   await expect(page.getByText('Phone must be between 11 and 21 characters')).toBeVisible
   await expect(page.getByText('Phone may not be blank')).toBeVisible
+
+});
+
+
+test('that today is selected on the calendar', async ({ page }) => {
+
+  // Helper function to get the day it is
+  const dayOfMonth: number = new Date().getDate();
+  console.log(dayOfMonth);
+
+  // Go to URL
+  await page.goto('https://automationintesting.online/');
+
+
+  //click submit button
+  await page.getByRole('button', { name: 'Book this room' }).first().click();
+
+  const element = page.locator('//*[@id="root"]/div/div/div[4]/div/div[2]/div[2]/div/div[2]/div[5]/div[2]/div/div[1]');
+  const elementText = await element.textContent();
+  await expect(elementText).toBe(dayOfMonth);
+
+  await expect(page.getByRole(dayOfMonth)).toBeVisible
 
 });
 
