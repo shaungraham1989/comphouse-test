@@ -1,13 +1,15 @@
 import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
 
-
-
-
-test('Validate that restful-booker page loads as expected', async ({ page }) => {
-  // Go to URL
+test.beforeEach(async ({ page }) => {
+  console.log(`Running ${test.info().title}`);
   await page.goto('https://automationintesting.online/');
+});
 
-  // Validate that restful booker page loads with the correct title
+
+test('Validate that shady meadows page loads as expected', async ({ page }) => {
+
+  // Validate that shady meadows page loads with the correct title
   await expect(page).toHaveTitle('Restful-booker-platform demo')
 
   // Ensure hotel image loads on the homepage
@@ -15,8 +17,6 @@ test('Validate that restful-booker page loads as expected', async ({ page }) => 
 });
 
 test('Validate that contact us form can be submitted with all fields completed,', async ({ page }) => {
-  // Go to URL
-  await page.goto('https://automationintesting.online/');
 
   // complete name, email, phone, subject and message fields
   await page.getByTestId('ContactName').click();
@@ -40,8 +40,6 @@ test('Validate that contact us form can be submitted with all fields completed,'
 
 
 test('Validate that contact us form cannot be submitted if phone number is left blank,', async ({ page }) => {
-  // Go to URL
-  await page.goto('https://automationintesting.online/');
 
   // complete name, email, subject and message fields
   await page.getByTestId('ContactName').click();
@@ -63,24 +61,37 @@ test('Validate that contact us form cannot be submitted if phone number is left 
 });
 
 
-test('that today is selected on the calendar', async ({ page }) => {
+test('Validate that the B&B contact details are correct', async ({ page }) => {
 
-  // Helper function to get the day it is
-  const dayOfMonth: number = new Date().getDate();
-  console.log(dayOfMonth);
+   // Verify B&B name
+   const bnbName = page.locator('#root > div > div > div.row.contact > div:nth-child(3) > p:nth-child(1)'); // Adjust selector based on the DOM
+   await expect(bnbName).toHaveText('Shady Meadows B&B');
+ 
+   // Verify address details
+   const address = page.locator('#root > div > div > div.row.contact > div:nth-child(3) > p:nth-child(2)'); // Adjust selector based on the DOM
+   await expect(address).toContainText('The Old , Shady Street, Newfordburyshire, NE1 410S');
+ 
+   // Verify contact number
+   const phone = page.locator('#root > div > div > div.row.contact > div:nth-child(3) > p:nth-child(3)'); // Adjust selector based on the DOM
+   await expect(phone).toContainText('012345678901');
 
-  // Go to URL
-  await page.goto('https://automationintesting.online/');
+   const email = page.locator('#root > div > div > div.row.contact > div:nth-child(3) > p:nth-child(4)'); // Adjust selector based on the DOM
+   await expect(email).toContainText('fake@fakeemail.com');
+
+});
 
 
-  //click submit button
-  await page.getByRole('button', { name: 'Book this room' }).first().click();
+test('Ensure that homepage meets the WCAG 2.0 AA accessibilty standards', async ({ page }, testInfo) => {
+  //checks entire page
+  const axeBuilder = await new AxeBuilder({ page })
+  .withTags(["wcag2aa"])
+  .analyze();
 
-  const element = page.locator('//*[@id="root"]/div/div/div[4]/div/div[2]/div[2]/div/div[2]/div[5]/div[2]/div/div[1]');
-  const elementText = await element.textContent();
-  await expect(elementText).toBe(dayOfMonth);
-
-  await expect(page.getByRole(dayOfMonth)).toBeVisible
+  await testInfo.attach("accessibilty-results-report-homepage", {
+    body: JSON.stringify(axeBuilder, null, 2),
+    contentType: "application/json"
+  });
+  expect (axeBuilder.violations).toEqual([]);
 
 });
 
