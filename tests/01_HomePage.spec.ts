@@ -69,7 +69,7 @@ test('Validate that the B&B contact details are correct', async ({ page }) => {
  
    // Verify address details
    const address = page.locator('#root > div > div > div.row.contact > div:nth-child(3) > p:nth-child(2)'); // Adjust selector based on the DOM
-   await expect(address).toContainText('The Old , Shady Street, Newfordburyshire, NE1 410S');
+   await expect(address).toContainText('The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S');
  
    // Verify contact number
    const phone = page.locator('#root > div > div > div.row.contact > div:nth-child(3) > p:nth-child(3)'); // Adjust selector based on the DOM
