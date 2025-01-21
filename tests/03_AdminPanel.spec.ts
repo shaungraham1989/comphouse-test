@@ -7,8 +7,6 @@ test.beforeEach(async ({ page }) => {
     await page.goto('https://automationintesting.online/');
   });
 
-
-
 test('Validate that user can sign into Admin Panel', async ({ page }) => {
 
     // Loads the Admin Panel log in screen and signs in with username and password

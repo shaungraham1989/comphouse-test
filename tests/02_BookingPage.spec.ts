@@ -4,8 +4,8 @@ import AxeBuilder from '@axe-core/playwright';
 test.beforeEach(async ({ page }) => {
   console.log(`Running ${test.info().title}`);
   await page.goto('https://automationintesting.online/');
-});
 
+});
 
 test('Ensure today is the preselected date on the calendar', async ({ page }) => {
 
@@ -22,7 +22,6 @@ test('Ensure today is the preselected date on the calendar', async ({ page }) =>
   expect(elementText).toBe('' + dayOfMonth + '');
 
 });
-
 
 test('Verify room booking functionality', async ({ page }) => {
   // Navigate to the target page
@@ -44,7 +43,7 @@ test('Verify room booking functionality', async ({ page }) => {
   const siblingElement = referenceElement.locator('xpath=following-sibling::*[1]');
   await expect(siblingElement).toBeVisible();
 
-  // Retrieve text content from the sibling date (optional)
+  // Retrieve text content from the sibling date
   const siblingChild = siblingElement.locator('xpath=./*[1]'); // Adjust to select the correct child
   const siblingElementChildText = await siblingChild.textContent();
   console.log(`Sibling element text: ${siblingElementChildText}`);
@@ -65,6 +64,7 @@ test('Verify room booking functionality', async ({ page }) => {
 
   // Validate booking confirmation
   await expect(page.locator('text="Booking Successful!"')).toBeVisible();
+
 });
 
 test('Ensure that Booking page meets the WCAG 2.0 AA accessibilty standards', async ({ page }, testInfo) => {

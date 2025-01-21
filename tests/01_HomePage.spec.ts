@@ -4,8 +4,8 @@ import AxeBuilder from '@axe-core/playwright';
 test.beforeEach(async ({ page }) => {
   console.log(`Running ${test.info().title}`);
   await page.goto('https://automationintesting.online/');
+  
 });
-
 
 test('Validate that shady meadows page loads as expected', async ({ page }) => {
 
@@ -14,6 +14,7 @@ test('Validate that shady meadows page loads as expected', async ({ page }) => {
 
   // Ensure hotel image loads on the homepage
   await expect(page.getByRole('img', { name: 'Hotel logoUrl' })).toBeVisible
+
 });
 
 test('Validate that contact us form can be submitted with all fields completed,', async ({ page }) => {
@@ -38,12 +39,11 @@ test('Validate that contact us form can be submitted with all fields completed,'
 
 });
 
-
 test('Validate that contact us form cannot be submitted if phone number is left blank,', async ({ page }) => {
 
   // complete name, email, subject and message fields
   await page.getByTestId('ContactName').click();
-  await page.getByTestId('ContactName').fill('Shaun Graham');
+  await page.getByTestId('ContactName').fill('Shaun test');
   await page.getByTestId('ContactName').press('Tab');
   await page.getByTestId('ContactEmail').fill('shaun@test.com');
   await page.getByTestId('ContactSubject').click();
@@ -59,7 +59,6 @@ test('Validate that contact us form cannot be submitted if phone number is left 
   await expect(page.getByText('Phone may not be blank')).toBeVisible
 
 });
-
 
 test('Validate that the B&B contact details are correct', async ({ page }) => {
 
@@ -79,7 +78,6 @@ test('Validate that the B&B contact details are correct', async ({ page }) => {
    await expect(email).toContainText('fake@fakeemail.com');
 
 });
-
 
 test('Ensure that homepage meets the WCAG 2.0 AA accessibilty standards', async ({ page }, testInfo) => {
   //checks entire page
