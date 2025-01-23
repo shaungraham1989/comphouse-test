@@ -37,13 +37,13 @@ npm install
 ```
 
 
-5. Install Playwright Browsers
+4. Install Playwright Browsers
 Playwright requires additional browser binaries for testing. Install them using:
 ```
 npx playwright install
 ```
 
-7. Run Tests
+5. Run Tests
 To execute the tests:
 ```
 npx playwright test
