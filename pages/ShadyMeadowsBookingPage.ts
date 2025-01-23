@@ -13,7 +13,10 @@ export class BookingPage {
 
 
   constructor(page: Page) {
+    
     this.page = page;
+
+    // Initialise locators inside the constructor
     this.bookRoomButtons = page.getByRole('button', { name: 'Book this room' });
     this.calendar = page.locator('.rbc-calendar');
     this.currentDay = page.locator('.rbc-date-cell.rbc-now');

@@ -16,7 +16,7 @@ export class ShadyMeadowsHomePage {
   constructor(page: Page) {
     this.page = page;
 
-    // Initialize locators inside the constructor
+    // Initialise locators inside the constructor
     this.contactNameInput = this.page.getByTestId('ContactName');
     this.contactEmailInput = this.page.getByTestId('ContactEmail');
     this.contactPhoneInput = this.page.getByTestId('ContactPhone');

@@ -11,7 +11,7 @@ test.describe('Shady Meadows Tests', () => {
     await shadyMeadowsHomePage.goTo();
   });
 
-  test('Validate that Shady Meadows page loads as expected', async ({ page }) => {
+  test('TC_001 Validate that Shady Meadows page loads as expected', async ({ page }) => {
    
   // Validate that shady meadows page loads with the correct title
   await expect(page).toHaveTitle('Restful-booker-platform demo')
@@ -21,7 +21,7 @@ test.describe('Shady Meadows Tests', () => {
 
   });
 
-  test('Validate that contact us form can be submitted with all fields completed', async ({ page }) => {
+  test('TC_002 Validate that contact us form can be submitted with all fields completed', async ({ page }) => {
     await shadyMeadowsHomePage.fillContactForm(
       'Shaun Graham',
       'shaun@test.com',
@@ -36,7 +36,7 @@ test.describe('Shady Meadows Tests', () => {
 
   });
 
-  test('Validate that contact us form cannot be submitted if phone number is left blank', async ({ page }) => {
+  test('TC_003 Validate that contact us form cannot be submitted if phone number is left blank', async ({ page }) => {
     await shadyMeadowsHomePage.fillContactForm(
       'Shaun Graham',
       'shaun@test.com',
@@ -51,7 +51,7 @@ test.describe('Shady Meadows Tests', () => {
     await expect(page.getByText('Phone may not be blank')).toBeVisible
   });
 
-  test('Validate that the B&B contact details are correct', async ({ page }) => {
+  test('TC_004 Validate that the B&B contact details are correct', async ({ page }) => {
     const bnbName = page.locator(
       '#root > div > div > div.row.contact > div:nth-child(3) > p:nth-child(1)'
     );
@@ -73,7 +73,7 @@ test.describe('Shady Meadows Tests', () => {
     await expect(email).toContainText('fake@fakeemail.com');
   });
 
-  test('Ensure that ShadyMeadowsHomePage meets the WCAG 2.0 AA accessibility standards', async ({ page }, testInfo) => {
+  test('TC_005 Ensure that ShadyMeadowsHomePage meets the WCAG 2.0 AA accessibility standards', async ({ page }, testInfo) => {
     const axeBuilder = await new AxeBuilder({ page }).withTags(['wcag2aa']).analyze();
 
     await testInfo.attach('accessibility-results-report-ShadyMeadowsHomePage', {

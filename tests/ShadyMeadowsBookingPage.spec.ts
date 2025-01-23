@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
   await bookingPage.navigateToHomePage();  // Navigate to the homepage
 });
 
-test('Ensure today is the preselected date on the calendar', async ({ page }) => {
+test('TC_006 Ensure today is the preselected date on the calendar', async ({ page }) => {
   const bookingPage = new BookingPage(page);
   
   // Book the first room
@@ -25,7 +25,7 @@ test('Ensure today is the preselected date on the calendar', async ({ page }) =>
 
 });
 
-test('Verify room booking functionality', async ({ page }) => {
+test('TC_007 Verify room booking functionality', async ({ page }) => {
   const bookingPage = new BookingPage(page);
   
   // Book the first room and interact with the calendar
@@ -42,7 +42,7 @@ test('Verify room booking functionality', async ({ page }) => {
   await expect(page.locator('text="Booking Successful!"')).toBeVisible;
 });
 
-test('Ensure that Booking page meets the WCAG 2.0 AA accessibility standards', async ({ page }, testInfo) => {
+test('TC_008 Ensure that Booking page meets the WCAG 2.0 AA accessibility standards', async ({ page }, testInfo) => {
   const bookingPage = new BookingPage(page);
   
   // Open the booking view
