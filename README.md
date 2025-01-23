@@ -48,9 +48,6 @@ To execute the tests:
 ```
 npx playwright test
 
-npx playwright test tests/example.spec.ts
-
-npx playwright test --project=chromium
 ```
 
 6. View Test Results
