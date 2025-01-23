@@ -15,14 +15,13 @@ This is an automated test suite for validating the functionality and accessibili
 
 ```
 
-Here are the steps to execute the tests from scratch, including the setup and execution:
 Steps to Execute Tests 
 
 1. Install Prerequisites
 Before starting, ensure you have the following installed on your machine:
 ```
-Node.js (at least v14.x or newer)
-npm (comes with Node.js)
+Node.js 
+
 ```
 2. Clone the Repository
 ```
