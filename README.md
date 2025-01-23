@@ -26,7 +26,8 @@ npm (comes with Node.js)
 ```
 2. Clone the Repository
 ```
-git clone https://github.com/your-username/Playwright-Test.git
+git clone git@github.com:shaungraham1989/comphouse-test.git
+
 cd Playwright-Test
 ```
 
